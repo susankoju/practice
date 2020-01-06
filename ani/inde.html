@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+
+
+  <script>
+
+    var ele= document.createElement("div");
+    
+    document.body.appendChild(ele);
+    ele.style.height= "500px";
+    ele.style.background="black";
+    ele.style.position="relative";
+    ele.style.width="500px";
+    ele.style.margin="100px auto";
+
+    document.body.style.padding="0px";
+    document.body.style.margin="0px";
+    document.body.style.background="grey";
+    
+
+
+    var circle= document.createElement("div");
+    circle.style.height="50px";
+    circle.style.background="red";
+    circle.style.width="50px";
+    circle.style.borderRadius="50%";
+    circle.style.position="absolute";
+    circle.style.left="200px";
+    
+      ele.appendChild(circle);
+
+
+    var i=0;
+    var direction=1;
+ 
+    var speed=1;
+    var count=1;
+    setInterval( moveCircle, 50);
+
+    function moveCircle(){
+        if(direction==1){
+          i+=speed;
+          speed+=0.035+count;
+          count-=count;
+        }
+        else {
+          i-=speed;
+          speed-=0.035-count;
+          count-= count;
+        }
+        circle.style.top=(i*20)+"px";
+
+        if(i*20 > 500-50){
+          direction=0;
+          speed=1;
+        }
+        else if(i<0){
+          direction=1;
+          speed=1;
+        }
+
+    }
+
+  </script>
+</body>
+</html>

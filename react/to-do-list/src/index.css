@@ -1,0 +1,141 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+header{
+  text-align: center;
+  color: #55a;
+}
+
+.nav ul{
+  margin: 0px auto;
+  display: inline-block;
+  list-style-type: none;
+}
+.nav ul li{
+  float: left;
+  transition: 0.5s all;
+  padding: 25px 100px;
+  font-size: 22px;
+}
+.nav ul li:hover{
+  background-color: rgba(240, 240, 240, 1);
+  cursor: pointer;
+}
+
+.nav ul li.currentPage{
+  border-top: 10px solid rgba(100,200,20,0.2);
+  margin-top: -10px;
+}
+
+
+
+
+
+section.mainContent{
+  background-color: rgba(240, 240, 240, 1);
+}
+
+.mainContent .wrappper{
+  width: 720px;
+  
+  margin: 0px auto;
+}
+
+
+
+
+.searchBar, .addBar{
+  position: relative;
+}
+
+.searchBar input, .addBar input{
+  border: 1px solid silver;
+  background-color: white;
+  border-radius: 4px;
+  width:100%;
+  padding: 25px;
+  margin:25px  0px 0px 0px;
+  box-shadow:  0px 5px rgba(145, 138, 138, 0.15);
+}
+.searchBar button, .addBar button{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  margin: 40px -35px 0px 0px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: red;
+  font-size: 1.25em;
+  color: white;
+}
+.addBar input{
+  border: 1px solid rgba(100,255,100,0.5);
+}
+.addBar button{
+  background-color: skyblue;  
+  font-size: 1.75em;
+}
+
+section.toDoList{
+  
+  font-size: 18px;
+  padding-bottom: 25px;
+  min-height: 400px;
+}
+.toDoList ul{
+  list-style: none;
+  padding: 25px;
+  margin: 5px auto;
+  width: 100%;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow:  0px 5px rgba(145, 138, 138, 0.15);
+  border: 1px solid silver;
+}
+.toDoList ul li{
+  margin: 25px auto;
+}
+
+.toDoList p label{
+  margin: 0px 20px;
+}
+
+.toDoList input[type=checkbox]{
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  color: aquamarine;
+  float: right;
+}
+
+.toDoList .noData{
+  text-align: center;
+  height: 250px;
+  width: 400px;
+  margin: 0px auto;
+  background-image: url(/nodatafound.png);
+  background-repeat: no-repeat;
+}
+
+
+
+footer{
+  text-align: center;
+  border-top: 2px solid white;
+  background-color: rgba(240, 240, 240, 1);
+  padding: 5px 0;
+  
+}
