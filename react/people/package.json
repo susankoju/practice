@@ -1,5 +1,6 @@
 {
   "name": "people",
+  "homepage": "https://susankoju.github.io/practice",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
