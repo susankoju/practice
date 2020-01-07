@@ -1,0 +1,20 @@
+.personRow{
+     border-bottom: 1px solid silver ;
+     padding: 0.8em;
+     transition: 0.3s all;
+}
+
+.personRow:hover{
+    background: linear-gradient(270deg,rgba(60,163,160,0.3) 0%, rgba(219,226,202,0.4) 100%);
+    border-radius: 1.75em;
+    box-shadow: #82ccdd 2px 0px 2vw;
+    cursor: pointer;
+}
+
+.personRow:hover {
+    color: orange;
+}
+.personRow:hover .personName{
+    
+    font-weight: bolder;
+}

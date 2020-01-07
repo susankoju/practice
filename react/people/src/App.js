@@ -1,14 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
+
+import {Header} from './components/Header';
+import MainContain from './components/MainContain';
+import {Footer} from './components/Footer';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        
-      </header>
+          <Header />
+            <MainContain />
+          <Footer />
     </div>
+
   );
 }
 
