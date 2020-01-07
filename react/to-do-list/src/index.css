@@ -29,9 +29,9 @@ header{
 .nav ul li{
   display: inline-block;
   transition: 0.5s all;
-  padding: 1em 8.5%;
+  padding: 1.5vw 8.5%;
   max-width: 80%;
-  font-size: 1.5em;
+  font-size: 1.55vw;
 }
 .nav ul li:hover{
   background-color: rgba(240, 240, 240, 1);
@@ -39,8 +39,8 @@ header{
 }
 
 .nav ul li.currentPage{
-  border-top: 0.7em solid rgba(100,200,20,0.2);
-  margin-top: -0.7em;
+  border-top: 0.75vw solid rgba(100,200,20,0.2);
+  margin-top: -0.75vw;
 }
 
 
@@ -95,7 +95,7 @@ section.mainContent{
 
 section.toDoList{
   
-  font-size: 1.2em;
+  font-size: 1.5vw;
   padding-bottom: 1.5em;
   min-height: 80%;
 }
@@ -110,7 +110,7 @@ section.toDoList{
   border: 1px solid silver;
 }
 .toDoList ul li{
-  margin: 1.5em auto;
+  margin: 2vw auto;
 }
 
 .toDoList p label{
@@ -118,8 +118,8 @@ section.toDoList{
 }
 
 .toDoList input[type=checkbox]{
-  width: 2em;
-  height: 2em;
+  width: 2.75vw;
+  height: 2.75vw;
   border-radius: 50%;
   color: aquamarine;
   float: right;
