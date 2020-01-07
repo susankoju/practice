@@ -21,13 +21,17 @@ header{
 .nav ul{
   margin: 0px auto;
   display: inline-block;
+  width: 85%;
+  
   list-style-type: none;
 }
+
 .nav ul li{
-  float: left;
+  display: inline-block;
   transition: 0.5s all;
-  padding: 25px 100px;
-  font-size: 22px;
+  padding: 1em 8.5%;
+  max-width: 80%;
+  font-size: 1.5em;
 }
 .nav ul li:hover{
   background-color: rgba(240, 240, 240, 1);
@@ -35,8 +39,8 @@ header{
 }
 
 .nav ul li.currentPage{
-  border-top: 10px solid rgba(100,200,20,0.2);
-  margin-top: -10px;
+  border-top: 0.7em solid rgba(100,200,20,0.2);
+  margin-top: -0.7em;
 }
 
 
@@ -48,7 +52,7 @@ section.mainContent{
 }
 
 .mainContent .wrappper{
-  width: 720px;
+  width: 75%;
   
   margin: 0px auto;
 }
@@ -91,13 +95,13 @@ section.mainContent{
 
 section.toDoList{
   
-  font-size: 18px;
-  padding-bottom: 25px;
-  min-height: 400px;
+  font-size: 1.2em;
+  padding-bottom: 1.5em;
+  min-height: 80%;
 }
 .toDoList ul{
   list-style: none;
-  padding: 25px;
+  padding: 1.5em;
   margin: 5px auto;
   width: 100%;
   background-color: white;
@@ -106,16 +110,16 @@ section.toDoList{
   border: 1px solid silver;
 }
 .toDoList ul li{
-  margin: 25px auto;
+  margin: 1.5em auto;
 }
 
 .toDoList p label{
-  margin: 0px 20px;
+  margin: 0px 1.25em;
 }
 
 .toDoList input[type=checkbox]{
-  width: 35px;
-  height: 35px;
+  width: 2em;
+  height: 2em;
   border-radius: 50%;
   color: aquamarine;
   float: right;
@@ -123,8 +127,8 @@ section.toDoList{
 
 .toDoList .noData{
   text-align: center;
-  height: 250px;
-  width: 400px;
+  height: 15em;
+  width: 25em;
   margin: 0px auto;
   background-image: url(/nodatafound.png);
   background-repeat: no-repeat;
