@@ -17,7 +17,7 @@ class App extends React.Component{
     
     return (
       <div>
-        <Header heading="To Do List Checker" setPage={this.setPage} page={this.state.page}/>
+        <Header heading="ToDo List Checker" setPage={this.setPage} page={this.state.page}/>
         <MainContent page={this.state.page.toLowerCase()}/>
         <Footer />
       </div>
