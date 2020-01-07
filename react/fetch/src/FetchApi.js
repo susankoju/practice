@@ -21,7 +21,7 @@ class FetchAPI extends React.Component{
 
     componentWillMount(){
         
-        fetch("https://randomuser.me/api/?results=250")
+        fetch("https://randomuser.me/api/?results=1200")
                 .then((respond) => { return respond.json() })
                 .then((myJson) => {
                     this.setState({
