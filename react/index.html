@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ReactJS</title>
+    <link rel="shortcut icon" href="./logo192.png" type="image/x-icon">
+    <title>ReactJS Apps</title>
     <style>
 
         body img{
@@ -13,6 +14,7 @@
             height: 50em;
             animation: App-logo-spin infinite 20s linear ;
             position: fixed;
+            z-index: -10;
             margin: 0px auto;
         }
         
@@ -24,9 +26,47 @@
                 transform: rotate(360deg);
             }
         }
+
+        .container{
+            width: 80%;
+            margin: 2.5em auto;
+            text-align: center;
+            box-shadow: 2px 4px 10px grey;
+            background: rgba(100,100,100,0.10);
+            border-radius: 1em;
+        }
+        table.container tr{
+            height: 4em;
+            font-size: 1.5em;
+        }
+        table.container tr{
+            box-shadow: 2px 2px 4px grey;
+        }
     </style>
 </head>
 <body>
     <img src="logo.svg" alt="logo" />
+    <table class="container">
+        <tr>
+            <th> Title </th>
+            <th> Site </th>
+            <th> Code </th>
+        </tr>
+        <tr>
+            <td> ToDo List </td>
+            <td> <a href="https://susankoju.github.io/react-to-do-list/"> CLICK ME </td>
+            <td> <a href="https://github.com/susankoju/practice/tree/master/react/to-do-list">CLICK ME</a> </td>
+        </tr>
+        <tr>
+            <td> People App </td>
+            <td> <a href="https://susankoju.github.io/react-people/"> CLICK ME </td>
+            <td> <a href="https://github.com/susankoju/practice/tree/master/react/people">CLICK ME</a> </td>
+        </tr>
+        <tr>
+            <td> --- </td>
+            <td> <a href="#"> </a> </td>
+            <td> <a href="#"> </a> </td>
+        </tr>
+    </table>
 </body>
 </html>

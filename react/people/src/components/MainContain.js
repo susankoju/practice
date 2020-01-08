@@ -57,7 +57,7 @@ class MainContain extends React.Component {
             ) : (
                 // withClose(<Profile person={this.state.profile} />)
 
-                <div style={{position: 'relative'}}>
+                <div style={{position: 'relative' , transition: '2s all'}}>
                     <div onClick={this.closeProfile} style={{position: 'absolute', right: '1em', top: '1em', background: 'rgba(255,50,50,0.25)', color: 'grey' ,cursor: 'pointer' , boxShadow: '2px 2px 4px silver', borderRadius: '50%', padding: '1em 1.2em'}}>X</div>
                     <Profile person={this.state.profile} />
                 </div>
