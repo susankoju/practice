@@ -55,14 +55,20 @@ var server = http.createServer((req, res) => {
             });
             break;
         case 'remove':
-            fs.unlink(target, function(err, data){
-                if(err){
-                    console.log(`Error deleting file ${target}! ${err}`)
-                    res.end(`Error deleting file ${target}! ${err}`)
-                }
-                console.log(`${target} >>  Deleted`);
-                res.end(`Deleted >>  ${target}`);
-            });
+            target = pathArr[2];
+            if (target){
+                fs.unlink(target, function(err, data){
+                    if(err){
+                        console.log(`Error deleting file ${target}! ${err}`)
+                        res.end(`Error deleting file ${target}! ${err}`)
+                    }
+                    console.log(`${target} >>  Deleted`);
+                    res.end(`Deleted >>  ${target}`);
+                });
+            } else {
+                console.log(`File not specified to delete`);
+                res.end(`File not specified to delete`);
+            }
             break;
         default:
             console.log("Connected client with no action");
