@@ -42,6 +42,31 @@ var server = http.createServer((req, res) => {
                 console.log(`${target} >>  ${newName}`);
                 res.end(`New name >>  ${JSON.stringify(newName)}`);
             })
+            break;
+        case 'append':
+            let appendTxt = pathArr[3] ? ' '+ pathArr[3] : '';
+            fs.appendFile(target, appendTxt, function(err, done){
+                if(err){
+                    console.log(`Error appending in file ${target}! ${err}`)
+                    res.end(`Error appending in file ${target}! ${err}`)
+                }
+                console.log(`${appendTxt} appended in ${target}`);
+                res.end(`${appendTxt} appended in ${target}`);
+            });
+            break;
+        case 'remove':
+            fs.unlink(target, function(err, data){
+                if(err){
+                    console.log(`Error deleting file ${target}! ${err}`)
+                    res.end(`Error deleting file ${target}! ${err}`)
+                }
+                console.log(`${target} >>  Deleted`);
+                res.end(`Deleted >>  ${target}`);
+            });
+            break;
+        default:
+            console.log("Connected client with no action");
+            res.end("Hello from server! No task to perform... Command by appending URL [/operation/target(optional)/value(optional)]");
     }
     
 }).listen(port, function (err, done) {
