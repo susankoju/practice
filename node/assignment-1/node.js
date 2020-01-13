@@ -13,7 +13,7 @@ var server = http.createServer((req, res) => {
     switch(operation){
         case 'write':
             let text = pathArr[3] || "Hello file";
-            fs.writeFile(target , text, function(err, done){
+            fs.writeFile(target , decodeURI(text), function(err, done){
                 if(err){
                     console.log(`Error writing in file ${target}! ${err}`)
                     res.end(`Error writing in file ${target}! ${err}`)
@@ -45,13 +45,13 @@ var server = http.createServer((req, res) => {
             break;
         case 'append':
             let appendTxt = pathArr[3] ? ' '+ pathArr[3] : '';
-            fs.appendFile(target, appendTxt, function(err, done){
+            fs.appendFile(target, decodeURI(appendTxt), function(err, done){
                 if(err){
                     console.log(`Error appending in file ${target}! ${err}`)
                     res.end(`Error appending in file ${target}! ${err}`)
                 }
-                console.log(`${appendTxt} appended in ${target}`);
-                res.end(`${appendTxt} appended in ${target}`);
+                console.log(`${decodeURI(appendTxt)} appended in ${target}`);
+                res.end(`${decodeURI(appendTxt)} appended in ${target}`);
             });
             break;
         case 'remove':

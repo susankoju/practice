@@ -1,0 +1,64 @@
+const express = require('express');
+const app = express();
+// app is entire express web framework
+// app.get('/', function (req, res) {
+//   console.log('i am atfunction (req, res, next) {
+req.lf = 'dillibazar';
+// res.json({ msg: 'you are blocked from middleware' })
+next();
+}
+// get request >>>');
+//   // res.sendStatus(400);
+//   // res.send('hi ')
+//   res.status(200)
+//   res.json({
+//     msg: 'Welcome to Express',
+//     data:req.query
+//   })
+// })
+// app.get('/write/:filename/:content', function (req, res) {
+//   console.log('req>>>', req.params);
+//   res.json(req.params);
+// })
+app.use('/write', function (req, res, next) {
+  res.send('hello');
+})
+app.use(function(req, res, next){
+ // regardless any url and  any methods
+})
+app.use('/login',function(req,res,next){
+  // this middeleware will came into actions for /login url only
+  // this is not a routing level middleware
+})
+// app.use(function(req,res,next){
+//   req.lf = 'something new ';
+//   next();
+// })
+app.get('/login', function (req, res) {
+  console.log('req. lf >>', req.lf);
+  res.json({
+    msg: 'welcome to login'
+  })
+})
+app.get('/register', function (req, res) {
+})
+app.listen(9090, function () {
+  console.log('server listeing at port 9090');
+})
+// middleware
+// middleware is a function  which has access to http request object http response object and next middleware function
+// middleware will came into action between request response cycle
+// middleware functions order is very important
+// syntax
+// function(req,res,next){
+  // req http request object
+  // res http response object
+  // next next middeleware function
+// }
+// app.use() app.use is configuration block for middlewares
+// types of middleware
+// 1 application level middleware 
+// 2 routing level middleware 
+// 3 thirdparty middleware
+// 4 inbuilt nmiddleware
+// 5 error handling middelware
