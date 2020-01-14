@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Type Writer</title>
+    <style>
+        p{
+            padding: 20px;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+    <p ><span id="typeWriter"></span> |</p>
+    <script>
+        var typeWriterContainter = document.getElementById('typeWriter');
+        
+        var typeTxt = ["Hello World", "My name is Susan"];
+
+        var txtToDisplay= '';
+        setInterval(typeTextFxn, 200);
+
+        var i= 0;
+        var j=0;
+
+        function typeTextFxn(){   
+
+            if(i == typeTxt[j].length ){
+                i=0;       
+                txtToDisplay= '';    
+                j++;
+            }       
+            if(j == typeTxt.length){
+                j=0;
+                txtToDisplay = '';    
+                i=0;
+            }
+
+            txtToDisplay = txtToDisplay + typeTxt[j][i];
+            
+            typeWriterContainter.innerText= txtToDisplay;
+            i++;
+
+            typeWriterContainter.style.color = "rgb("+ (i*20) + ",100,100)";
+        }
+
+    </script>
+</body>
+</html>
