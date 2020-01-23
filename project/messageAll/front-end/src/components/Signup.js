@@ -4,7 +4,13 @@ import Axios from 'axios';
 import {
     Link
 } from "react-router-dom";
-export default class Signup extends React.Component{
+export default class Signup extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            msg: ''
+        }
+    }
     render(){
         return (
             <div className="container">
@@ -53,6 +59,9 @@ export default class Signup extends React.Component{
                                     <span style={{ padding: "1em", color:"rgb(28,138,219)"}}>Signin</span>
                                 </Link>
                             </p>
+                            <div style={{ color: "#a33" }}>
+                                {this.state.msg ? <div>{this.state.msg}</div> : ''}
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -61,7 +70,7 @@ export default class Signup extends React.Component{
         )
     }
 
-    submitHandler(e){
+    submitHandler = (e) => {
         e.preventDefault();
         const data = {
             'firstName': e.target.firstName.value,
@@ -72,8 +81,25 @@ export default class Signup extends React.Component{
         Axios.post(SERVER.URL+'/user/signup', data)
             .then(
                 res => {
-                    console.log(res);
+                    this.setState({
+                        msg: 
+                        <div>
+                            <p>Account created successfully! Please login..</p>
+                            <div style={{ margin: "1em auto", maxWidth: "7.5em" }}>
+                                <Link to="/signin">
+                                    <div className="btn">
+                                        Signin
+                                    </div>
+                                </Link>
+                            </div>
+                        </div>
+                    });
                 }
             )
+            .catch(result => {
+                this.setState({
+                    msg: "Error occured!",
+                });
+            })
     }
 }
