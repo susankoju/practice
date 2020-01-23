@@ -7,6 +7,8 @@ import {
     Link
 } from "react-router-dom";
 
+import io from 'socket.io-client';
+
 import '../styles/message.css';
 
 export default class Message extends React.Component{
@@ -16,6 +18,13 @@ export default class Message extends React.Component{
             data: [],
             note: undefined
         }
+
+        const socket = io.connect(require('./../utils/server').SERVER.URL);
+        socket.on('broadcast', () => {
+            this.fetchData();
+        })
+
+        socket.emit('newMessage');
     }
 
     renderList(){
@@ -70,6 +79,7 @@ export default class Message extends React.Component{
         })
             .then(res => {
                 this.fetchData();
+                // socket.emit
             })
             .catch(res => {
                 this.setState({
@@ -117,6 +127,8 @@ export default class Message extends React.Component{
                 })
             })
     }
+
+
 
     componentDidUpdate(){
         const messageScroller = document.getElementById('messageScroller');

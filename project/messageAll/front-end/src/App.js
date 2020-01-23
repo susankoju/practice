@@ -7,22 +7,26 @@ import Message from './components/Message';
 import Home from './components/Home';
 import User from './components/User';
 import Logout from './components/Logout';
-
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
 
+
+
 class App extends React.Component {
   constructor() {
     super();
+
     this.state = {
       err: ""
     }
   }
 
+
   render() {
+
     return (
       <Router>
 
