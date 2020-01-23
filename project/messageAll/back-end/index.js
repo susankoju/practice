@@ -53,13 +53,17 @@ const io = socket(server);
 
 io.sockets.on('connection', (socket, user) => {
     console.log('Client connected to socket: ' + socket.id);
-    clients.active++;
     // console.log(socket.handshake.query);
-    clients.users.push({
-        'socketId' : socket.id,
-        'userName' : socket.handshake.query.userName,
-        'userId' : socket.handshake.query.userId
-    });
+    clients.active++;
+
+    if (!clients.users.some(user => user.userId === socket.handshake.query.userId)) {
+        clients.users.push({
+            'socketId': socket.id,
+            'userName': socket.handshake.query.userName,
+            'userId': socket.handshake.query.userId
+        });
+    }
+
     io.emit('broadcast', {
         'clients': clients
     });
