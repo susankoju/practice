@@ -13,8 +13,17 @@ app.use(express.urlencoded({
 }))
 
 
+const clients = require('./configs/clientsStats');
 app.use('/message/send', function (req, res, next) {
-    io.emit('broadcast');
+    io.emit('broadcast', {
+        'clients': clients
+    });
+    next();
+});
+app.use('/message/delete', function (req, res, next) {
+    io.emit('broadcast', {
+        'clients': clients
+    });
     next();
 });
 
@@ -42,9 +51,32 @@ const server = app.listen(PORT || 3000, function () {
 const socket = require('socket.io');
 const io = socket(server);
 
-io.sockets.on('connection', (socket) => {
+io.sockets.on('connection', (socket, user) => {
     console.log('Client connected to socket: ' + socket.id);
+    clients.active++;
+    // console.log(socket.handshake.query);
+    clients.users.push({
+        'socketId' : socket.id,
+        'userName' : socket.handshake.query.userName,
+        'userId' : socket.handshake.query.userId
+    });
+    io.emit('broadcast', {
+        'clients': clients
+    });
+    socket.on("disconnect", () => {
+        console.log('Client disconnected to socket: ' + socket.id);
+        clients.active--;
+        clients.users =clients.users.filter( user => {
+            return user.socketId !== socket.id
+        });
+        console.log(clients.users);
+        io.emit('broadcast', {
+            'clients': clients
+        });
+    })
 })
+
+
 // io.sockets.on('newMessage' ,socket => {
 //     io.emit('broadcast');
 //     console.log("New Message!");

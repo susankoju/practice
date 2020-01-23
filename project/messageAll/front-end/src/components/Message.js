@@ -11,24 +11,35 @@ import io from 'socket.io-client';
 
 import '../styles/message.css';
 
-export default class Message extends React.Component{
-    constructor(){
+export default class Message extends React.Component {
+    constructor() {
         super();
         this.state = {
             data: [],
-            note: undefined
+            note: undefined,
+            active: 0,
+            activeUsers: []
         }
 
-        const socket = io.connect(require('./../utils/server').SERVER.URL);
-        socket.on('broadcast', () => {
+        this.socket = io.connect(require('./../utils/server').SERVER.URL, {
+            query: {
+                userName : localStorage.getItem('userName'),
+                userId: localStorage.getItem('userId')
+            }
+        });
+        this.socket.on('broadcast', (data) => {
             this.fetchData();
+            this.setState({
+                active: data.clients.active,
+                activeUsers: data.clients.users
+            })
         })
 
-        socket.emit('newMessage');
+        // socket.emit('newMessage');
     }
 
-    renderList(){
-        
+    renderList() {
+
         return (
             <div >
                 <div className="messageWrapper">
@@ -38,6 +49,9 @@ export default class Message extends React.Component{
                             <button onClick={this.fetchData}>
                                 <img src="./images/Paomedia-Small-N-Flat-Sign-sync.ico" alt="Refresh"></img>
                             </button>
+                            <p>
+                                {this.state.active + " Online User"}
+                            </p>
                         </div>
                         <div className="messageScroller" id="messageScroller">
 
@@ -47,7 +61,7 @@ export default class Message extends React.Component{
 
                             {
                                 this.state.data.map((msg) => {
-                                    return (<EachMessage key={msg.id} message={msg} fetchData={this.fetchData}/>);
+                                    return (<EachMessage key={msg.id} message={msg} fetchData={this.fetchData} />);
                                 })
                             }
                             {
@@ -59,23 +73,24 @@ export default class Message extends React.Component{
                                 <input type="text" name="message" placeholder="Type message..." />
                                 {/* <input type="file" name="image" /> */}
                                 <button type="submit">
-                                    <img src="./images/paper-planes-3128885_960_720.png" alt="Send"/>
+                                    <img src="./images/paper-planes-3128885_960_720.png" alt="Send" />
                                 </button>
                             </form>
                         </div>
                     </div>
                 </div>
-                <Sidebar />
+                <Sidebar activeUsers={this.state.activeUsers}/>
             </div>
         );
     }
 
-    submitHandler = e =>{
+    submitHandler = e => {
         e.preventDefault();
-        
-        Axios.post(SERVER.URL+"/message/send", {senderId : 6, text: e.target.message.value} ,{
-            headers: { 'token': localStorage.getItem('token') || ''
-        }
+
+        Axios.post(SERVER.URL + "/message/send", { senderId: 6, text: e.target.message.value }, {
+            headers: {
+                'token': localStorage.getItem('token') || ''
+            }
         })
             .then(res => {
                 this.fetchData();
@@ -83,7 +98,7 @@ export default class Message extends React.Component{
             })
             .catch(res => {
                 this.setState({
-                    data: [...this.state.data, { id: 0, time: "", text: JSON.stringify(res.message), senderName: "Message Failed to Send"}],
+                    data: [...this.state.data, { id: 0, time: "", text: JSON.stringify(res.message), senderName: "Message Failed to Send" }],
                     note: localStorage.getItem('token') ? undefined : (
                         <div style={{ margin: "1em auto", maxWidth: "7.5em" }}>
                             <Link to="/signin">
@@ -100,7 +115,7 @@ export default class Message extends React.Component{
     }
 
 
-    render(){
+    render() {
         return (
             <React.Fragment>
                 {this.renderList()}
@@ -108,7 +123,7 @@ export default class Message extends React.Component{
         )
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.fetchData();
     }
 
@@ -130,9 +145,13 @@ export default class Message extends React.Component{
 
 
 
-    componentDidUpdate(){
+    componentDidUpdate() {
         const messageScroller = document.getElementById('messageScroller');
         messageScroller.scrollTop = messageScroller.scrollHeight;
     }
-    
+
+    componentWillUnmount(){
+        this.socket.disconnect();
+    }
+
 }

@@ -14,11 +14,15 @@ a{
 
 
 .sidebar{
-    height: 100%;
+    height: 100vh;
     overflow: hidden;
     background-color: honeydew;
     width: 30%;
     float: right;
+}
+.sidebar .users{
+    height: 100%;
+    overflow-y: scroll;
 }
 
 .messageWrapper{
@@ -47,6 +51,17 @@ a{
 .messageHeader h2{
     display: inline-block;
     margin-left: 1em;
+}
+
+.messageHeader p{
+    padding-left: 1.5em;
+    margin: 1.25em 2em;
+    float: right;
+    background-image: url('/images/button-850099_960_720.png');
+    background-position: left center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    
 }
 
 .messageHeader button{

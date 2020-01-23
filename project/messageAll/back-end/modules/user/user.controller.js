@@ -4,32 +4,35 @@ const jwt = require('jsonwebtoken');
 const jwtSecret = require('../../configs/index').jwtSecret;
 
 module.exports = {
-    signup : (req, res, next) => {
+    signup: (req, res, next) => {
         bcrypt.hash(req.body.password, 10)
-        .then( (hash) => {
-            const data = {
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
-                address: req.body.address,
-                contact: req.body.contact,
-                email: req.body.email,
-                password: hash,
-                image: req.body.image,
-                role: 'member'
-            }
-            query.insert(data)
-                .then((result) => {
-                    res.send(result);
-                })
-                .catch((err) => {
-                    next({
-                        err: err
+            .then((hash) => {
+                const data = {
+                    firstName: req.body.firstName,
+                    lastName: req.body.lastName,
+                    address: req.body.address,
+                    contact: req.body.contact,
+                    email: req.body.email,
+                    password: hash,
+                    image: req.body.image,
+                    role: 'member'
+                }
+                query.insert(data)
+                    .then((result) => {
+                        res.send(result);
                     })
-                })
-        })
-        .catch( (err) => {
-             next({ err: err})
-        })        
+                    .catch((err) => {
+                        next({
+                            err: err
+                        })
+                    })
+            })
+            .catch((err) => {
+                next({ err: err })
+            })
+    },
+    profile: (req, res, next) => {
+        
     },
 
     signin : (req, res, next) => {

@@ -60,7 +60,7 @@ export default class Signin extends React.Component {
                 localStorage.setItem('token', result.data.token);
                 localStorage.setItem('userId', result.data.id);
                 localStorage.setItem('userName', result.data.firstName+" "+result.data.lastName);
-                this.props.history.push('/home');
+                this.props.history.push('/message');
             })
             .catch(result => {
                 this.setState({

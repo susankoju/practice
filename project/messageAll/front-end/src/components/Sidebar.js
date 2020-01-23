@@ -2,19 +2,27 @@ import React from "react";
 import {
     Link
 } from "react-router-dom";
+import ActiveUser from './ActiveUser';
 
 export default class Sidebar extends React.Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state ={
-            users: []
+            activeUsers: props.activeUsers
         }
+    }
+
+    static getDerivedStateFromProps(nextProps, prevState){
+        if(nextProps.activeUsers !== prevState.activeUsers){
+            return ({activeUsers: nextProps.activeUsers});
+        }
+        return null;
     }
 
     render(){
         return (
             <div className="sidebar">
-                <div className="profile">
+                <div className="profile" id="sideProfile">
                     
                     <div className="home">
                         <Link to="/"><img src="./images/flat-blue-home-icon-4.png" alt="Home" /></Link>
@@ -37,9 +45,20 @@ export default class Sidebar extends React.Component {
                         )
                     }
                 </div>
-                <div className="users">
-                    <ul>
-                        
+                
+                <div className="users" style={{ maxHeight: document.body.clientHeight - (document.getElementById('sideProfile') ? document.getElementById('sideProfile').offsetHeight : 0) }}>
+                    <h4 style={{borderBottom: '1px solid grey', padding:'1em', textAlign:'center'}}>{"Online Users("+this.state.activeUsers.length+")"}</h4>
+                    <ul style={{ listStyleType: 'none'}}>
+                        {
+                            // console.log(typeof this.state.activeUsers, this.state.activeUsers)
+                            this.state.activeUsers.map( user => {
+                                return <li key={user.socketId}> 
+                                    <a href={"/user/"+user.userId}>
+                                        <ActiveUser user={user} />
+                                    </a>
+                                </li>
+                            })
+                        }
                     </ul>
                 </div>
             </div>
