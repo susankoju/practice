@@ -32,12 +32,10 @@ const selectByEmail = (email) => {
 
 const selectById = (id) => {
     return new Promise((resolve, reject) => {
-        console.log(id);
         conn.query(`SELECT * FROM user WHERE id = '${id}'`, (err, rows, fields) => {
             if (err) reject(err);
             if (rows.length < 1) reject("Error no user!");
             resolve(rows);
-            console.log(rows);
         });
     })
 }
@@ -54,10 +52,22 @@ const selectAll = () => {
     })
 }
 
+const update = (id, updateString) => {
+    return new Promise((resolve, reject) => {
+        conn.query(`UPDATE user SET ${updateString} WHERE id = ${id}`, (err, rows, fields) => {
+            if (err) {
+                console.log(err);
+                reject(err);
+            }
+            else resolve(rows);
+        })
+    })
+}
+
 module.exports = {
     insert,
     selectByEmail,
     selectById,
     selectAll,
-    
+    update,
 }

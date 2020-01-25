@@ -2,8 +2,9 @@ const jwt = require('jsonwebtoken');
 const jwtSecret = require('../configs/index').jwtSecret;
 
 
-module.exports = (req, res, next) =>{
+module.exports = (req, res, next) => {
     let token;
+
 
     if (req.headers['x-acces-token']) {
         token = req.headers['x-access-token'];
@@ -18,6 +19,9 @@ module.exports = (req, res, next) =>{
         token = req.query['token'];
     }
 
+    if (!token && req.body.headers.token) {
+        token = req.body.headers.token;
+    }
 
     if (token) {
 

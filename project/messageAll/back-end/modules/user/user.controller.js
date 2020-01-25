@@ -32,7 +32,17 @@ module.exports = {
             })
     },
     profile: (req, res, next) => {
-        
+        query.selectById(req.params.id)
+        .then(result => {
+            res.json({
+                profile: result[0]
+            });
+        })
+        .catch((err) => {
+            next({
+                err: err
+            });
+        })
     },
 
     signin : (req, res, next) => {
@@ -63,6 +73,47 @@ module.exports = {
             });
         })
 
-    }
+    },
+
+    patch: (req, res, next) => {
+        let id = req.body.user.id;
+        bcrypt.hash(req.body.data, 10)
+            .then(hash => {
+                query.update(id, "password = '" + hash + "'")
+                    .then(() => {
+                        res.json({
+                            msg: "Password changed successfully!"
+                        })
+                    })
+                    .catch(err => {
+                        next({
+                            err: err
+                        })
+                    })
+            })
+            .catch(err => {
+                next({
+                    err: err
+                })
+            })
+
+    },
+
+    put: (req, res, next) => {
+        let id = req.body.user.id;
+        console.log(req.body.data);
+        query.update(id, `firstName = '${req.body.data.firstName}', lastName= '${req.body.data.lastName}', address= '${req.body.data.address}', email= '${req.body.data.email}' `)
+            .then(() => {
+                res.json({
+                    msg: "profile updated successfully!"
+                })
+            })
+            .catch(err => {
+                console.log(err);
+                next({
+                    err: err
+                })
+            })
+    },
     
 }

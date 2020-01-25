@@ -48,7 +48,7 @@ export default class Sidebar extends React.Component {
                 
                 <div className="users" style={{ maxHeight: document.body.clientHeight - (document.getElementById('sideProfile') ? document.getElementById('sideProfile').offsetHeight : 0) }}>
                     <h4 style={{borderBottom: '1px solid grey', padding:'1em', textAlign:'center'}}>{"Online Users("+this.state.activeUsers.length+")"}</h4>
-                    <ul style={{ listStyleType: 'none'}}>
+                    <ul style={{ listStyleType: 'none', paddingLeft: '1.25em'}}>
                         {
                             // console.log(typeof this.state.activeUsers, this.state.activeUsers)
                             this.state.activeUsers.map( user => {

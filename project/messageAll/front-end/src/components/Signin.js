@@ -40,9 +40,9 @@ export default class Signin extends React.Component {
                             <label htmlFor="password">Password</label>
                             <input id="password" type="password" className="form-control" placeholder="Enter your password" />
                         </div>
-                        <input type="submit" className="btn-black" value="Login" />
+                        <input type="submit" className="btn-primary btn" value="Login" />
                         <Link to="/signup">
-                            <input type="reset" className="" value="Register" />
+                            <input type="reset" className="btn-black " value="Register" />
                         </Link>
                         <div style={{color: "#a33"}}>
                             {this.state.msg ? <label>{this.state.msg}</label> : ''}

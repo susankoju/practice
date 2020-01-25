@@ -7,6 +7,7 @@ import Message from './components/Message';
 import Home from './components/Home';
 import User from './components/User';
 import Logout from './components/Logout';
+import NotFound from './components/NotFound'
 import {
   BrowserRouter as Router,
   Switch,
@@ -38,6 +39,7 @@ class App extends React.Component {
           <Route exact path="/logout" component={Logout} />
           <Route exact path="/home" component={Home} />
           <Route exact path="/" component={Home} />
+          <Route component={NotFound} />
         </Switch>
       </Router>
     );
