@@ -46,7 +46,7 @@ export default class Signup extends React.Component {
                         <div className="form-row">
                             <div className="form-group">
                                 <label htmlFor="password">Password</label>
-                                <input required type="password" placeholder="Enter password" className="form-control" id="password" name="password"></input>
+                                <input required type="password" minLength="8" placeholder="Enter password" className="form-control" id="password" name="password"></input>
                             </div>
                         </div>
                         <div className="form-row">

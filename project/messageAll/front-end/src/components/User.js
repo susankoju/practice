@@ -125,9 +125,9 @@ export default class User extends React.Component {
                 <h3 style={{ textAlign: 'center', }}>Change Password</h3>
                 <form method="POST" onSubmit={this.passwordChangeHandler} >
                     <label htmlFor="password">New Password </label>
-                    <input required type="password" name="password" id="password" placeholder="New Password" />
+                    <input required type="password" minLength="8" name="password" id="password" placeholder="New Password" />
                     <label htmlFor="password2">Confirm New Password </label>
-                    <input required type="password" name="password2" id="password2" placeholder="Confirm New Password" />
+                    <input required type="password" minLength="8" name="password2" id="password2" placeholder="Confirm New Password" />
                     {this.state.pwErr ? <h4 style={{color:'#e33', marginTop:'0px'}}>{this.state.pwErr}</h4> : ''}
                     <button type="submit" className='btn' style={{ width: '100%' }}>Change Password</button>
                 </form>
@@ -137,7 +137,7 @@ export default class User extends React.Component {
 
     passwordChangeHandler = e => {
         e.preventDefault();
-
+        // if(e.target.password.value.toString().length < 8)
         if (e.target.password.value === e.target.password2.value) {
             this.setState({
                 pwErr: undefined
