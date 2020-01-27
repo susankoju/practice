@@ -30,10 +30,10 @@ export default class Sidebar extends React.Component {
                     <div className="logout">
                         <Link to="/logout"><img src="./images/276363.png" alt="Logout" /></Link>
                     </div>
-                    <a href={"/user/" + localStorage.getItem('userId')} >
+                    <Link to={"/user/" + localStorage.getItem('userId')} >
                         <img src="./images/depositphotos_59095529-stock-illustration-profile-icon-male-avatar.jpg" alt="profile" />
                         <h2>{localStorage.getItem('userName')}</h2>
-                    </a>
+                    </Link>
                     {
                         localStorage.getItem('token')? "" : (
 
@@ -53,9 +53,9 @@ export default class Sidebar extends React.Component {
                             // console.log(typeof this.state.activeUsers, this.state.activeUsers)
                             this.state.activeUsers.map( user => {
                                 return <li key={user.socketId}> 
-                                    <a href={"/user/"+user.userId}>
+                                    <Link to={"/user/"+user.userId}>
                                         <ActiveUser user={user} />
-                                    </a>
+                                    </Link>
                                 </li>
                             })
                         }

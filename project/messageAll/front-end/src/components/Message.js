@@ -58,11 +58,21 @@ export default class Message extends React.Component {
                             <div style={{ textAlign: "center", padding: "10em 0em 5em 0em", borderBottom: "1px solid grey", background: "url('./images/1.webp') no-repeat" }}>
                                 This is start of the conversation
                             </div>
+{
 
+                                // console.log(this.state.data)
+}
                             {
-                                this.state.data.map((msg) => {
-                                    return (<EachMessage key={msg.id} message={msg} fetchData={this.fetchData} />);
-                                })
+                                Array.isArray(this.state.data) ? (
+                                    this.state.data.map((msg) => {
+                                        return (<EachMessage key={msg.id} message={msg} fetchData={this.fetchData} />);
+                                    })
+                                )
+                                : (
+                                    <div style={{width:'100%', margin:'2em auto', textAlign:'center'}}>
+                                        No Messages
+                                    </div>
+                                )
                             }
                             {
                                 this.state.note ? this.state.note : ""

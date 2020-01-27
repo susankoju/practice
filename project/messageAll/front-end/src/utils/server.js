@@ -1,3 +1,5 @@
 export const SERVER = {
-    URL:process.env.REACT_APP_API_URL,
+    // URL: 'http://localhost:4000',
+
+    URL: 'https://messageall.herokuapp.com',
 }

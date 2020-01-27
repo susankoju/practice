@@ -1,4 +1,7 @@
 import React from 'react';
+import {
+    Link
+} from "react-router-dom";
 
 export default function NotFound(){
     return (
@@ -7,7 +10,7 @@ export default function NotFound(){
             <p>
                 The page you are searching is not found!
             </p>
-            <a href="/home">Go To Home</a>
+            <Link to="/home">Go To Home</Link>
         </div>
     )
 }

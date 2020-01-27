@@ -29,16 +29,17 @@ class App extends React.Component {
   render() {
 
     return (
-      <Router>
+      <Router basename={require('./config').basename}>
+        {console.log(require('./config').basename)}
 
         <Switch>
           <Route path="/signup" component={Signup} />
           <Route path="/signin" component={Signin} />
           <Route path="/message" component={Message} />
           <Route path="/user" component={User} />
-          <Route exact path="/logout" component={Logout} />
-          <Route exact path="/home" component={Home} />
-          <Route exact path="/" component={Home} />
+          <Route path="/logout" component={Logout} />
+          <Route path="/home" component={Home} />
+          <Route path="/" component={Home} />
           <Route component={NotFound} />
         </Switch>
       </Router>

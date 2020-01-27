@@ -2,6 +2,9 @@ import React from "react"
 import '../styles/eachMessage.css';
 import Axios from "axios";
 import { SERVER } from "../utils/server";
+import {
+    Link
+} from "react-router-dom";
 
 export default class EachMessage extends React.Component {
     constructor(props) {
@@ -30,9 +33,9 @@ export default class EachMessage extends React.Component {
                     <div className = { classStr + " messageRow row"} >
 
                             <div className="profile col-md-2">
-                                <a href={"/user/" + this.state.message.senderId} >
+                                <Link to={"/user/" + this.state.message.senderId} >
                                     <img src="./images/depositphotos_59095529-stock-illustration-profile-icon-male-avatar.jpg" alt="profile" />
-                                </a>
+                                </Link>
                             </div>
                             <div className="col-md-9 messageBubble">
 
@@ -61,9 +64,9 @@ export default class EachMessage extends React.Component {
                             </div>
 
                             <div className="profile col-md-2">
-                                <a href={"/user/" + this.state.message.senderId} >
+                                <Link to={"/user/" + this.state.message.senderId} >
                                     <img src="./images/depositphotos_59095529-stock-illustration-profile-icon-male-avatar.jpg" alt="profile" />
-                                </a>
+                                </Link>
                             </div>
                         </div>
                 )}
