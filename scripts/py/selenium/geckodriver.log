@@ -1,0 +1,16 @@
+1582891503644	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile8GI4Qt"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/luser which is owned by luser.)
+1582891598263	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileINzIL8"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/luser which is owned by luser.)
+1582891633585	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilex6TUaQ"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/luser which is owned by luser.)
+1582891660414	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileblTQng"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/luser which is owned by luser.)
+1582891757224	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileDuK4x7"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/luser which is owned by luser.)
+1582891984489	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile9aw07N"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/luser which is owned by luser.)
+1582892005654	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilerr5lyV"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/luser which is owned by luser.)
+1582892017157	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileQ5F1zk"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/luser which is owned by luser.)

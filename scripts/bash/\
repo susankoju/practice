@@ -1,0 +1,11 @@
+#!/bin/bash
+
+battery= upower -e | grep battery | (read path; upower -i $path) | grep percentage | tr -dc '0-9'
+low_power=50
+
+if ( $battery != 50);
+then  
+	echo "battery low"  
+fi
+
+

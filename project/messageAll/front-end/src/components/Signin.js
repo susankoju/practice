@@ -63,6 +63,7 @@ export default class Signin extends React.Component {
                 this.props.history.push('/message');
             })
             .catch(result => {
+                console.log(result);
                 this.setState({
                     msg: "Invalid username or password!",
                 });

@@ -44,6 +44,7 @@ module.exports = {
 
     },
     profile: (req, res, next) => {
+        
         query.selectById(req.params.id)
         .then(result => {
             res.json({

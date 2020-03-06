@@ -1,0 +1,165 @@
+
+#---------------------  Active Dir -----------------------
+﻿#To list features
+#get-windowsfeature
+
+#To install ADDS
+install-windowsfeature AD-Domain-Services -IncludeManagementTools
+
+#----------------------------------------------------------
+
+﻿#list modules
+Get-Module
+
+#import ADDS Deployment module
+Import-Module ADDSDeployment
+
+#list forest
+Get-ADForest
+
+#configure domain controller in forest
+Install-ADDSForest -DomainName "ad.com" -InstallDns -ForestMode Win2012 -DomainMode Win2012 -SafeModeAdministratorPassword (ConvertTo-SecureString -String password -AsPlainText -Force)
+
+#----------------------------------------------------------
+
+﻿#For syntax help
+#Get-Command New-ADUser -Syntax
+
+#To see users
+Get-ADUser -Filter * -Properties "Name"
+
+#To remove users
+Remove-ADUser -Identity Tester -Confirm:0
+
+#to add user
+New-ADUser `
+-Name "Tester" `
+-AccountPassword (ConvertTo-SecureString -String password123* -AsPlainText -Force) `
+-ChangePasswordAtLogon 1 `
+-Department "tester" `
+-Enabled 1
+
+# To allow log on locally
+Get-ADGroupMember "Administrators"
+Add-ADGroupMember -Identity Administrators -Members Tester
+gpupdate /force
+
+
+
+# Other try  commands
+#Get-ADGroup -Identity "Users" 
+
+
+Search-ADAccount -LockedOut
+Get-ADPrincipalGroupMembership Tester
+
+Get-Command New-ADGroup -Syntax
+New-ADGroup -Name "Users" -GroupScope DomainLocal
+
+
+#####################################################################
+
+#---------------------  IIS ---------------------------
+
+﻿
+#Get-Module
+
+#Get-WindowsFeature -Name Web-Server
+
+if ((Get-WindowsFeature Web-server).InstallState -ne "Installed"){
+    Write-Host "IIS is not installed! Installing now..."
+    Install-WindowsFeature -Name Web-Server -IncludeManagementTools   
+    Write-Host "IIS installed"
+}
+
+
+function clearBinding($port){
+    #$port = 80
+    if((Get-WebBinding -Port $port).length -gt 0) {
+        Remove-WebBinding -Port $port
+    }
+}
+
+
+Remove-IISSite -Name "Default Web Site"
+
+clearBinding(80)
+if((Get-Website -Name "TestSite").length -gt 0){
+    Write-Host "TestSite is already here"
+    Remove-IISSite -Name "TestSite" -Confirm:$false
+}
+New-IISSite -Name "TestSite" -PhysicalPath "$env:SystemDrive\inetpub\wwwroot" -BindingInformation "*:80:"
+
+New-IISSiteBinding -Name "TestSite" -BindingInformation "*:80:" -Protocol http
+
+clearBinding(443)
+New-IISSiteBinding -Name "TestSite" -BindingInformation "*:443:" -Protocol https
+
+Start-IISSite -Name "TestSite"
+#Stop-IISSite -Name "TestSite" -Confirm:$false
+
+#Website
+New-Website -Name TestWebsite -Port 80 -IPAddress '127.0.0.2' -PhysicalPath "$env:SystemDrive\inetpub\wwwroot"
+New-WebBinding -Name test.com -Port 80 -IPAddress '127.0.0.2' -Protocol http
+
+# URL rewrite  ( Try )
+
+Import-Module WebAdministration
+
+Add-WebConfigurationProperty  -PSPath 'IIS:\Sites\TestSite' -Name "." -filter '/system.webserver/rewrite/rules' -Value @{name='rewrite';patternSyntax='ECMAScript';stopProcessing='True'}
+Set-WebConfigurationProperty -PSPath 'IIS:\Sites\TestSite' -Name url -Value (@{protocol="http";bindingInformation="*:80:*fb"},@{protocol="http";bindingInformation="*:80:facebook.com"}) -Filter "/system.webserver/rewrite/rules/rule[@name=`"rewrite`"]/match" 
+
+
+#try
+
+
+
+#Add-WebConfigurationProperty -PSPath 'IIS:\Sites\TestSite' -Name "URL rewrite" -Value "facebook.com" -filter '/system.webserver/rewrite/rules/rule[@name="rewrite"]/condition'
+
+Get-WebConfigurationProperty -Name * -Filter *
+
+# try commands
+<#
+Get-Module
+get-website -Verbose
+Get-IISConfigSection
+Get-IISAppPool
+Get-IISSite
+Start-IISSite -Name TestSite
+Get-IISSiteBinding -Name "*"
+Write-Host (Get-WebBinding -Port 443).Length
+Get-IISConfigAttributeValue
+Write-Host $env:SystemDrive
+iisreset.exe
+#>
+
+
+
+###############################################################
+
+#-------------------------- FW --------------------------------
+﻿Get-NetFirewallRule -DisplayName "Inbound*" 
+#Get-NetFirewallPortFilter | Where-Object -Property { $_.LocalPort -eq "22"}
+
+
+function allow($direction, $port) {
+    Write-Host "$port"
+    $name = $direction + ' ' + $port    
+    New-NetFirewallRule -DisplayName "$name" -Direction "$direction" -LocalPort $port -Action Allow -Protocol "TCP"
+}
+
+allow("Inbound")(80)
+allow("Inbound")(21)
+allow("Inbound")(22)
+allow("Inbound")(443)
+
+
+
+<#
+
+Set-NetFirewallRule -DisplayName "http" -LocalPort 80
+
+Test-NetConnection localhost -Port 80
+netsh firewall show state
+
+#>

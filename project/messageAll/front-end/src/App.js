@@ -29,9 +29,8 @@ class App extends React.Component {
   render() {
 
     return (
-      <Router basename={require('./config').basename}>
-        {console.log(require('./config').basename)}
-
+      <Router >
+        
         <Switch>
           <Route path="/signup" component={Signup} />
           <Route path="/signin" component={Signin} />

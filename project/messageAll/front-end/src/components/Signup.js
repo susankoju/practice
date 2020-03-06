@@ -28,11 +28,11 @@ export default class Signup extends React.Component {
                             Signup for MessageAll
                         </h2>
                         <div className="form-row">
-                            <div className="form-group ">
+                            <div className="form-group half">
                                 <label htmlFor="firstName">First Name</label>
                                 <input required type="text" placeholder="Enter First Name" className="form-control" id="firstName" name="firstName"></input>
                             </div>
-                            <div className="form-group ">
+                            <div className="form-group half">
                                 <label htmlFor="lastName">Last Name</label>
                                 <input required type="text" placeholder="Enter Last Name" className="form-control" id="lastName" name="lastName"></input>
                             </div>
@@ -47,6 +47,18 @@ export default class Signup extends React.Component {
                             <div className="form-group">
                                 <label htmlFor="password">Password</label>
                                 <input required type="password" minLength="8" placeholder="Enter password" className="form-control" id="password" name="password"></input>
+                            </div>
+                        </div>
+                        <div className="form-row">
+                            <div className="form-group">
+                                <label htmlFor="address">Address</label>
+                                <input required type="text" placeholder="Enter Address" className="form-control" id="address" name="address"></input>
+                            </div>
+                        </div>
+                        <div className="form-row">
+                            <div className="form-group">
+                                <label htmlFor="contact">Contact</label>
+                                <input required type="text" placeholder="Enter contact" className="form-control" id="contact" name="contact"></input>
                             </div>
                         </div>
                         <div className="form-row">
@@ -76,6 +88,8 @@ export default class Signup extends React.Component {
             'firstName': e.target.firstName.value,
             'lastName': e.target.lastName.value,
             'email': e.target.email.value,
+            'address': e.target.address.value,
+            'contact': e.target.contact.value,
             'password': e.target.password.value
         }  
         Axios.post(SERVER.URL+'/user/signup', data)

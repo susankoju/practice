@@ -10,9 +10,10 @@ import './../styles/user.css';
 export default class User extends React.Component {
     constructor() {
         super();
+        // console.log(window.location.pathname.slice(23));
         this.state = {
-            id: window.location.pathname.slice(6) || localStorage.getItem('userId'),
-            profile: {},
+            id: window.location.pathname.slice(23) || localStorage.getItem('userId'),
+            profile: 1, //initial check of IF
             err: undefined,
             msg: undefined,
             pwErr: undefined
@@ -24,6 +25,7 @@ export default class User extends React.Component {
     }
 
     fetchProfile = () => {
+        // console.log(this.state.id);
         Axios.get(SERVER.URL + "/user/" + this.state.id)
             .then(result => {
                 this.setState({
@@ -31,6 +33,7 @@ export default class User extends React.Component {
                 })
             })
             .catch(result => {
+                // console.log(result);
                 this.setState({
                     err: result,
                     profile: null
@@ -57,15 +60,15 @@ export default class User extends React.Component {
                         <div className="profile">
                             <div className="info">
                                 <div className="home">
-                                    <Link to="/"><img src="/images/flat-blue-home-icon-4.png" alt="Home" /></Link>
+                                    <Link to="/"><img src="../images/flat-blue-home-icon-4.png" alt="Home" /></Link>
                                 </div>
                                 <div className="logout">
-                                    <Link to="/logout"><img src="/images/276363.png" alt="Logout" /></Link>
+                                    <Link to="/logout"><img src="../images/276363.png" alt="Logout" /></Link>
                                 </div>
 
                                 <h2 style={{ textShadow: '1px 2px 5px #23a4ee' }}>{this.state.profile.firstName + " " + this.state.profile.lastName}</h2>
                                 <div style={{ width: '50%', float: 'right' }}>
-                                    <img src="/images/depositphotos_59095529-stock-illustration-profile-icon-male-avatar.jpg" alt="Profile" />
+                                    <img src="../images/depositphotos_59095529-stock-illustration-profile-icon-male-avatar.jpg" alt="Profile" />
                                 </div>
                                 <div style={{ width: '50%', display: 'inline-block', textAlign: 'left' }}>
                                     <h3 style={{ textDecoration: 'underline' }}> Information</h3>
@@ -78,6 +81,10 @@ export default class User extends React.Component {
                                             <tr>
                                                 <td>Address: </td>
                                                 <td>{this.state.profile.address}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Contact: </td>
+                                                <td>{this.state.profile.contact}</td>
                                             </tr>
                                             <tr>
                                                 <td>Email: </td>

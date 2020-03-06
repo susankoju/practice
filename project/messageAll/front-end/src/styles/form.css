@@ -28,11 +28,23 @@
     margin-top: 16%;
 }
 .signupMain form{
-    margin-top: 10%;
+    margin-top: 7%;
+}
+
+.signupMain .half{
+    max-width: 11.5em;
+    display: inline-block;
+}
+.signupMain .half:first-child{
+    margin-right: 1em;
 }
 
 .signupMain label{
     display: block;
+}
+
+.signupMain input{
+    margin: 0.5em 0.5em 0.5em 0em ;
 }
 
 .login-main-text{
