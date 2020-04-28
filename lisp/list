@@ -1,0 +1,41 @@
+
+(defun last-name (name)
+       "Select the last name from a name represented as a list. "
+       (princ
+              (first (last name)))
+	      )
+(defvar names '((John Q Public) (Malcolm X)))
+(mapcar #'last-name names)
+
+(mapcar #'- '(1 2 3 4))
+(princ "Hello")
+
+;;(setf p '(JOHN Q PUBLIC))
+;;(print x)
+
+
+(+ 3 3)
+(append '(Pat Kim) '(Robin Sandy ))
+(defvar p nil)
+(setf ρ '(John 0 Public)) 
+(print p)
+(print (first p))
+(print (second p))
+(print (length p))
+(print (rest p))
+(print ())
+
+
+(setf x '((1st element) 2 (element 3) ((4)) 5))
+(print (first x))
+
+(print (cons 'Mr p))
+
+
+(print (first(last p)))
+
+
+(defun last-name (name) 
+  "Select the last name from a name"
+  (first (last name)))
+(print (last-name p))

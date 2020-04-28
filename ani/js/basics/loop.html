@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <script>
+        var password = ["wer", "asd", 'dsa', 'qwea', 'asdasd', 'asd', 'dfgfg']
+        var entered_password = "asd";
+
+        // console.log(entered_password+" == "+password[1])
+
+        for(var i=0;i<password.length; i++){
+            // console.log(entered_password+" == "+password[i])
+            if(password[i] == entered_password){
+                console.log("Log in")
+                break //get out of loop if match
+            }
+        }
+
+
+        for(var i=0;i<password.length; i++){
+            // console.log(entered_password+" == "+password[i])
+            if(password[i] == entered_password){
+                continue //skip all below code and continue loop
+            }
+            console.log("Password incorrect")
+        }
+
+
+    </script>
+</body>
+</html>
