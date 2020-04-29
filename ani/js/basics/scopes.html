@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+
+        a = "a"
+        function fn(){
+            console.log("Inside function")
+            var a = ["Apple"]
+            console.log("Value of a=",a)
+        }
+
+        fn()
+
+        console.log("Value of a=",a)
+
+        //
+
+        a = "a"
+        function fn(){
+            console.log("Inside function")
+            a = ["Apple"] //this a is same as above a
+            console.log("Value of a=",a)
+        }
+
+        fn()
+
+        console.log("Value of a=",a)
+
+
+
+        // function as res
+        function init() {
+            // do stuff;
+            return function(a, b) {
+                return a + b;
+            }
+        }
+
+        var getSum = init();
+        var sum = getSum(1, 2);
+        var anotherSum = init()(1, 2);
+
+
+        // callback
+
+
+        // Pseudo Code.
+        function getAPIValue(success, err) {
+            var value = callAPI();
+
+            if (value.status === 'success') {
+                success(value);
+            } else {
+                    err(value);
+            }
+        }
+
+        getAPIValue(function(data) {
+            console.log('SUCCESS', data);
+        }, function(err) {
+            console.log('ERROR', err);
+        });
+
+    </script>
+</body>
+</html>
