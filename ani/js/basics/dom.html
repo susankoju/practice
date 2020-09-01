@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="main" style="width:200px;background-image: url('BX6E-02E_High_Large_SIDE_2000x.webp');background-size: contain;height:200px;position:relative;border-radius: 50%;display:inline-block;font-size:2em;color:red">
+        
+    </div>
+
+    <script>
+        var asd = document.getElementById("main")
+        dir = 0
+         
+        function a(){
+            asd.style.top=i*20+"px"
+            if(dir)
+                i++
+            else
+                i--
+
+            if(i>20){
+                dir=0
+            }
+            if(i<0){
+                dir =1
+
+            }
+        }
+
+        i=0
+        setInterval(() => {
+            a(i)
+            }, 100);
+    </script>
+</body>
+</html>
